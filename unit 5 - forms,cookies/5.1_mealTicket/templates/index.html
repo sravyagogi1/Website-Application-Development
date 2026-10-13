@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meal Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <h1>Order your meal here!</h1>
+    <p>Enter you name for the order, select the items you would like to purchase, and click submit.</p>
+
+    <form action="/result" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="meal">Choose a Meal:</label>
+      <select id="meal" name="meal">
+        {% for meal in meals %}
+          <option value="{{ meal.name }}">{{ meal.name }} - ${{ "%.2f"|format(meal.price) }}</option>
+        {% endfor %}
+      </select><br><br>
+
+      <input type="checkbox" id="senior_discount" name="senior_discount" value="1">
+      <label for="senior_discount">Senior Citizen? (10% Discount!)</label><br><br>
+
+      <label for="instructions">Special Instructions:</label><br>
+      <textarea id="instructions" name="instructions" rows="4" cols="40" placeholder="Enter any special instructions here."></textarea><br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+    
+    <hr>
+    <p><a href="/kitchen">View Kitchen Management Dashboard</a></p>
+  </body>
+</html>  

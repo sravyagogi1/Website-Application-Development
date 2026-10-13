@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>5.2 cookies & modals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <main class="container">
+      <h1>Visit Counter</h1>
+      <p>You have visited this page {{ user_data.visits }} time(s).</p>
+
+      <section class="inventory">
+        <h2>Your Inventory</h2>
+        <p><strong>Cars:</strong> {{ user_data.cars }}</p>
+        <p><strong>Cows:</strong> {{ user_data.cows }}</p>
+      </section>
+
+      <div class="actions">
+        <a class="button" href="/buycar">Buy Car</a>
+        <a class="button" href="/buycow">Buy Cow</a>
+        <button type="button" id="openModal">Inventory Summary</button>
+        <a class="clear-link" href="/clearinventory">Clear All Session Data</a>
+      </div>
+    </main>
+
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <button type="button" class="close-button" id="closeModal">x</button>
+        <h2>Inventory Summary</h2>
+        <p>Total visits: {{ user_data.visits }}</p>
+        <p>Cars bought: {{ user_data.cars }}</p>
+        <p>Cows bought: {{ user_data.cows }}</p>
+        <p>Total items: {{ user_data.total_items }}</p>
+      </div>
+    </div>
+
+    <script>
+      const openModal = document.getElementById("openModal");
+      const closeModal = document.getElementById("closeModal");
+      const modalBackdrop = document.getElementById("modalBackdrop");
+
+      openModal.addEventListener("click", function () {
+        modalBackdrop.classList.add("show");
+      });
+
+      closeModal.addEventListener("click", function () {
+        modalBackdrop.classList.remove("show");
+      });
+
+      modalBackdrop.addEventListener("click", function (event) {
+        if (event.target === modalBackdrop) {
+          modalBackdrop.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>

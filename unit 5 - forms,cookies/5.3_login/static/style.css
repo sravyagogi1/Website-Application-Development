@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+    color: #25313b;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    background: rgb(247, 199, 221);
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 560px;
+    padding: 30px;
+}
+
+h1,
+h2 {
+    color: #9e245f;
+    margin-top: 0;
+}
+
+p {
+    font-size: 1.1em;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: 1px solid #c9a6b8;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    margin-bottom: 16px;
+    padding: 10px;
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.button,
+button,
+input[type="submit"] {
+    background: #cf6286;
+    border: 0;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover {
+    background: #9e245f;
+}
+
+.modal-backdrop {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    display: none;
+    inset: 0;
+    justify-content: center;
+    position: fixed;
+}
+
+.modal-backdrop.show {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    max-width: 400px;
+    padding: 28px;
+    position: relative;
+    width: calc(100% - 48px);
+}
+
+.close-button {
+    background: #d8e1e3;
+    color: #25313b;
+    padding: 6px 10px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+}
+
+.close-button:hover {
+    background: #bdc9cc;
+}

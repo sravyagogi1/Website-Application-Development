@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kitchen Manager Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+  <div class="container">
+    <h1>Kitchen Manager Dashboard</h1>
+    <p><strong>Total Number of Orders:</strong> {{ total_orders }}</p>
+    <p><strong>Total Revenue:</strong> ${{ "%.2f"|format(total_revenue) }}</p>
+    <br>
+    <a href="/">Back to Order Form</a>
+  </div>
+  </body> 
+</html>

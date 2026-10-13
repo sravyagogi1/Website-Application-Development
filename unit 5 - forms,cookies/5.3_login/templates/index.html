@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Login Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Flask Login</h1>
+
+      {% if logged_in %}
+        <p>You are logged in as <strong>{{ username }}</strong>.</p>
+        <div class="actions">
+          <a class="button" href="/secret">Open Protected Page</a>
+          <button type="button" id="openLogoutModal">Logout</button>
+        </div>
+      {% else %}
+        <p>You are not logged in yet.</p>
+        <button type="button" id="openLoginModal">Login</button>
+      {% endif %}
+    </main>
+
+    <div class="modal-backdrop" id="loginModal">
+      <div class="modal">
+        <button type="button" class="close-button" data-close="loginModal">x</button>
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+
+          <input type="submit" value="Login">
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="logoutModal">
+      <div class="modal">
+        <button type="button" class="close-button" data-close="logoutModal">x</button>
+        <h2>Logout</h2>
+        <p>Are you sure you want to log out, {{ username }}?</p>
+        <a class="button" href="/logout">Yes, log out</a>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="messageModal">
+      <div class="modal">
+        <button type="button" class="close-button" data-close="messageModal">x</button>
+        <h2 id="messageTitle">Message</h2>
+        <p id="messageText"></p>
+      </div>
+    </div>
+
+    <script>
+      function showModal(id) {
+        document.getElementById(id).classList.add("show");
+      }
+
+      function hideModal(id) {
+        document.getElementById(id).classList.remove("show");
+      }
+
+      const loginButton = document.getElementById("openLoginModal");
+      if (loginButton) {
+        loginButton.addEventListener("click", function () {
+          showModal("loginModal");
+        });
+      }
+
+      const logoutButton = document.getElementById("openLogoutModal");
+      if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+          showModal("logoutModal");
+        });
+      }
+
+      document.querySelectorAll(".close-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+          hideModal(button.dataset.close);
+        });
+      });
+
+      document.querySelectorAll(".modal-backdrop").forEach(function (backdrop) {
+        backdrop.addEventListener("click", function (event) {
+          if (event.target === backdrop) {
+            backdrop.classList.remove("show");
+          }
+        });
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const messageTitle = document.getElementById("messageTitle");
+      const messageText = document.getElementById("messageText");
+
+      if (params.get("success") === "false") {
+        messageTitle.textContent = "Invalid Credentials";
+        messageText.textContent = "The username or password was incorrect.";
+        showModal("messageModal");
+      } else if (params.get("auth_error") === "true") {
+        messageTitle.textContent = "Login Required";
+        messageText.textContent = "You must log in before viewing the protected page.";
+        showModal("messageModal");
+      } else if (params.get("logout") === "true") {
+        messageTitle.textContent = "Logged Out";
+        messageText.textContent = "You have been successfully logged out.";
+        showModal("messageModal");
+      }
+    </script>
+  </body>
+</html>
