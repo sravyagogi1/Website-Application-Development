@@ -1,0 +1,7 @@
+@import url(https://db.onlinewebfonts.com/c/1be24cb794e05db5c90a6b24da7ed1c2?family=Black+Mango);
+
+:root {
+    --font-heading: "Black Mango", cursive; 
+    --font-body: "Quicksand", sans-serif;
+    --font-serif: "Playfair Display", serif;
+}

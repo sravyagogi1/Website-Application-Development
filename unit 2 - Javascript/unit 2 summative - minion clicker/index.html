@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minion Banana Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        
+        <div class="left-panel">
+            <img src="minionclicker.png" alt="Minion Clicker" class="title-image">
+            
+            <div class="progress-display">
+                <h2><span id="banana-count">0</span> Bananas 🍌</h2>
+                <p>Generating <span id="bps-display">0</span> bananas per second</p>
+                <p>Getting <span id="bpc-display">1</span> bananas per click</p>
+            </div>
+
+            <div class="click-area">
+                <img src="minion.png" id="main-minion" alt="Click the Minion!" onclick="clickMinion()">
+            </div>
+            
+            <div id="message-board">
+                <p id="milestone-text">Start clicking to gather bananas!</p>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h2>Gru's Upgrade Shop</h2>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Dave Minion</strong> (Productivity)
+                    <p>Helps you click. +1 Banana per click.</p>
+                    <p class="owned-text">Owned: <span id="dave-owned">0</span></p>
+                </div>
+                <button id="btn-dave" onclick="buyDave()">Buy for <span id="dave-cost">10</span> 🍌</button>
+            </div>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Stuart Minion</strong> (Time-Based)
+                    <p>Gathers bananas while you watch. +1 Auto-Banana per second.</p>
+                    <p class="owned-text">Owned: <span id="stuart-owned">0</span></p>
+                </div>
+                <button id="btn-stuart" onclick="buyStuart()">Buy for <span id="stuart-cost">50</span> 🍌</button>
+            </div>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Purple Minion Serum</strong> (Different-Dimension)
+                    <p>Upgrades the quality of your bananas. 2x multiplier to ALL production!</p>
+                    <p class="owned-text">Owned: <span id="serum-owned">0</span></p>
+                </div>
+                <button id="btn-serum" onclick="buySerum()">Buy for <span id="serum-cost">200</span> 🍌</button>
+            </div>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Agnes's Unicorn</strong> (Productivity)
+                    <p>It's so fluffy! +5 Bananas per click.</p>
+                    <p class="owned-text">Owned: <span id="unicorn-owned">0</span></p>
+                </div>
+                <button id="btn-unicorn" onclick="buyUnicorn()">Buy for <span id="unicorn-cost">500</span> 🍌</button>
+            </div>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Minion Rocket</strong> (Time-Based)
+                    <p>Space bananas! +10 Auto-Bananas per second.</p>
+                    <p class="owned-text">Owned: <span id="rocket-owned">0</span></p>
+                </div>
+                <button id="btn-rocket" onclick="buyRocket()">Buy for <span id="rocket-cost">1000</span> 🍌</button>
+            </div>
+
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <strong>Gru's Freeze Ray</strong> (Different-Dimension)
+                    <p>Freezes time so you can harvest more! 2x multiplier to ALL production.</p>
+                    <p class="owned-text">Owned: <span id="freeze-owned">0</span></p>
+                </div>
+                <button id="btn-freeze" onclick="buyFreeze()">Buy for <span id="freeze-cost">5000</span> 🍌</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body{
+        font-family: Arial;
+      }
+
+      section{
+        padding:30px;
+        border-bottom:3px solid #ccc;
+      }
+
+      h2{
+        margin-bottom:20px;
+      }
+
+      .flexRow{
+        display:flex;
+      }
+      .flexRow div{
+        width:120px;
+        height:100px;
+        margin:10px;
+      }
+      .flexRow .a{background:hotpink;}
+      .flexRow .b{background:lightpink;}
+      .flexRow .c{background:deeppink;}
+
+      .centerScreen{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#ddd;
+      }
+      .centerBox{
+        width:150px;
+        height:150px;
+        background:purple;
+      }
+
+      .spaceBetween{
+        display:flex;
+        justify-content:space-between;
+      }
+      .spaceBetween div{
+        width:120px;
+        height:100px;
+      }
+      .spaceBetween .a{background:orange;}
+      .spaceBetween .b{background:teal;}
+      .spaceBetween .c{background:gold;}
+
+      .gallery{
+        display:flex;
+      }
+      .gallery img{
+        width:25%;
+        height:auto;
+      }
+
+      .pageLayout{
+        display:flex;
+        flex-direction:column;
+      }
+      .header{background:#333;color:white;padding:15px;}
+      .main{background:#eee;padding:20px;}
+      .footer{background:#333;color:white;padding:15px;}
+
+      .columns{
+        display:flex;
+      }
+      .columns div{
+        padding:20px;
+        background:white;
+        margin:10px;
+      }
+
+      @media (max-width:600px){
+        .columns{
+          flex-direction:column;
+        }
+      }
+
+      .gridColumns{
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+      }
+      .gridColumns div{
+        background:#fff;
+        padding:20px;
+        margin:10px;
+      }
+
+      .grid2x2{
+        display:grid;
+        grid-template-columns:150px 150px;
+        grid-template-rows:150px 150px;
+        gap:10px;
+      }
+      .grid2x2 div:nth-child(1){background:skyblue;}
+      .grid2x2 div:nth-child(2){background:blue;}
+      .grid2x2 div:nth-child(3){background:deepskyblue;}
+      .grid2x2 div:nth-child(4){background:aliceblue;}
+
+      .card{
+        width:250px;
+        background:white;
+        border-radius:15px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        padding:15px;
+        text-align:center;
+      }
+      .card img{
+        width:100%;
+        border-radius:15px;
+      }
+
+      form{
+        background:white;
+        padding:20px;
+        width:300px;
+        border-radius:10px;
+      }
+      input, button{
+        width:100%;
+        padding:10px;
+        margin-top:10px;
+        border-radius:6px;
+        border:1px solid #ccc;
+      }
+      button{
+        background:#333;
+        color:white;
+        border:none;
+      }
+      button:hover{
+        background:black;
+      }
+
+      nav ul{
+        list-style:none;
+        background:#333;
+        padding:10px;
+      }
+      nav li{
+        display:inline;
+        margin-right:20px;
+      }
+      nav a{
+        color:white;
+        text-decoration:none;
+        font-weight:bold;
+      }
+      nav a:hover{
+        text-decoration:underline;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="flexRow">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+    </div>
+
+    <section class="centerScreen">
+    <div class="centerBox"></div>
+    </section>
+
+    <div class="spaceBetween">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+    </div>
+
+    <div class="gallery">
+      <img src="https://picsum.photos/200">
+      <img src="https://picsum.photos/200">
+      <img src="https://picsum.photos/200">
+      <img src="https://picsum.photos/200">
+    </div>
+
+    <div class="pageLayout">
+      <div class="header">Header</div>
+      <div class="main">Main Content</div>
+      <div class="footer">Footer</div>
+    </div>
+
+    <div class="columns">
+      <div>Column 1</div>
+      <div>Column 2</div>
+      <div>Column 3</div>
+    </div>
+
+    <div class="gridColumns">
+      <div>Column 1</div>
+      <div>Column 2</div>
+      <div>Column 3</div>
+    </div>
+
+    <div class="grid2x2">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/200">
+      <h3>Sravya Gogineni</h3>
+      <p>Hi this is my ID card</p>
+    </div>
+
+    <form>
+    <label>Name</label>
+    <input type="text">
+
+    <label>Email</label>
+    <input type="email">
+
+    <button>Submit</button>
+    </form>
+
+    <nav>
+    <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    </ul>
+    </nav>
+
+  </body>
+</html>

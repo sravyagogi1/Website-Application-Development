@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      .container { display: flex; gap: 10px; flex-wrap: wrap; }
+      .tile { border: 1px solid black; padding: 20px; width: 60px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <h1>Rolling {{ num_dice }} dice with {{ num_sides }} sides</h1>
+    <div class="container">
+      {% for roll in rolls %}
+        <div class="tile">{{ roll }}</div>
+      {% endfor %}
+    </div>
+    <br>
+    <a href="/roll/6">Roll 1 d6</a><br>
+    <a href="/roll/6/2">Roll 2 d6</a>
+  </body>
+</html>

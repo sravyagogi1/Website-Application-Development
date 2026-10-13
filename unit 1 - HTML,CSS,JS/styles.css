@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Slab:wght@300;400;700&display=swap');
+
+:root {
+  --bg-dark: #ffc0cb;
+  --accent: #888888;
+  --wood: #d88ca0;
+  --muted: #555555;
+  --highlight: #777777;
+}
+
+body {
+  background-color: #ffc0cb;
+  background-image: none;
+  color: #555555;
+  font-family: "Roboto Slab", Georgia, serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: #ffe6f0;
+  width: 100%;
+  max-width: 760px;
+  border: 6px solid #d88ca0;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+  transition: transform 220ms ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+#event-title {
+  font-family: 'Economica', sans-serif;
+  font-size: 3rem;
+  color: #666666;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0 0 1.25rem 0;
+  font-style: italic;
+  color: #666666;
+  font-size: 1.05rem;
+}
+
+.highlight {
+  color: #777777;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+h2 {
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  color: #666666;
+  margin: 1.25rem 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+p {
+  color: #666666;
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+}
+
+.label {
+  font-weight: 700;
+  color: #555555;
+}
+
+#when-where {
+  border-left: 3px solid #d88ca0;
+  padding-left: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+#details {
+  background: #ffd9e6;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-top: 0.6rem;
+  border: 1px solid #e6a6b8;
+}
+
+.note {
+  background: #ffeef5;
+  padding: 0.6rem;
+  border-left: 4px solid #d88ca0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #555555;
+  margin-top: 0.6rem;
+}
+
+#invite-image {
+  display: block;
+  width: 90%;
+  max-width: 320px;
+  margin: 0.9rem 0;
+  margin-left: 12.5rem;
+  border: 4px solid #d88ca0;
+  border-radius: 6px;
+}
+
+.rsvp-link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  text-decoration: none;
+  border: 2px solid #d88ca0;
+  border-radius: 6px;
+  color: #555555;
+  background: #f5c6d6;
+  font-weight: 700;
+  transition: transform 160ms ease;
+}
+
+.rsvp-link:hover {
+  transform: translateY(-2px);
+}
+
+#cta {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e6a6b8;
+}
+
+.smallprint {
+  font-size: 0.82rem;
+  color: #777777;
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 1.25rem;
+  }
+  #event-title {
+    font-size: 2rem;
+  }
+  .rsvp-link {
+    padding: 0.5rem;
+  }
+}

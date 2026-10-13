@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sravya's Dictionary Word Finder</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        line-height: 1.4;
+        background: #f7f7f7;
+        color: #222;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+      }
+
+      #wordContainer {
+        max-width: 800px;
+      }
+
+      .word-section {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin: 16px 0;
+        padding: 16px;
+      }
+
+      .word-section h2 {
+        font-size: 1.1rem;
+        margin: 0 0 10px;
+      }
+
+      .word-list {
+        margin: 0;
+        padding-left: 22px;
+        columns: 3;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          margin: 20px;
+        }
+
+        .word-list {
+          columns: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dictionary Word Finder</h1>
+
+    <div id="wordContainer">
+      <p>Loading words...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

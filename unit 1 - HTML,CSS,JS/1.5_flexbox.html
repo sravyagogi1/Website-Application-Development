@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			body{
+			  font-family: Arial;
+			  background:#f4f4f4;
+			  margin:20px;
+			}
+
+			h2{
+			  margin-top:50px;
+			}
+
+			.stack div{
+			  width:200px;
+			  height:100px;
+			  margin:10px;
+			  border:2px solid black;
+			}
+			.stack .a{ background:lightpink; }
+			.stack .b{ background:lightblue; }
+			.stack .c{ background:lightyellow; }
+
+			.inline div{
+			  display:inline-block;
+			  width:200px;
+			  height:100px;
+			  margin:10px;
+			  border:2px solid black;
+			}
+			.inline .a{ background:lightpink; }
+			.inline .b{ background:lightblue; }
+			.inline .c{ background:lightyellow; }
+
+			.centerBox{
+			  width:400px;
+			  margin:20px auto;
+			  background:lightgray;
+			  padding:20px;
+			  border:2px solid black;
+			  text-align:center;
+			}
+
+			.flexContainer{
+			  display:flex;
+			  padding:15px;
+			}
+			.flexItem{
+			  width:150px;
+			  height:100px;
+			  border:2px solid black;
+			  background:lightseagreen;
+			  margin:10px;
+			}
+
+			.spaceBetween{
+			  display:flex;
+			  justify-content:space-between;
+			  padding:15px;
+			}
+
+			.floatLeft{
+			  width:200px;
+			  padding:15px;
+			  border:2px solid black;
+			  float:left;
+			  background:hotpink;
+			}
+
+			.floatRight{
+			  width:200px;
+			  padding:15px;
+			  border:2px solid black;
+			  float:right;
+			  background:lightpink;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="stack">
+		  <div class="a"></div>
+		  <div class="b"></div>
+		  <div class="c"></div>
+		</div>
+		<hr>
+
+		<div class="inline">
+		  <div class="a"></div>
+		  <div class="b"></div>
+		  <div class="c"></div>
+		</div>
+
+		<div class="centerBox">Centered Box</div>
+
+		<div class="flexContainer">
+		  <div class="flexItem"></div>
+		  <div class="flexItem"></div>
+		</div>
+
+		<div class="spaceBetween">
+		  <div>Left Side</div>
+		  <div>Right Side</div>
+		</div>
+
+		<div class="floatLeft">Left Box</div>
+		<div class="floatRight">Right Box</div>
+
+</body>
+</html>

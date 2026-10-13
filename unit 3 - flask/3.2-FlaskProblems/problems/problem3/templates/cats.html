@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Cats Page</h1>
+    <img src="{{ url_for('static', filename='images/cat.png') }}" alt="cat" width="300">
+    <br><br>
+    <a href="{{ url_for('dogs') }}">Go to Dogs</a>
+  </body>
+</html>

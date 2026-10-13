@@ -1,0 +1,212 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cipher Tool 2.4</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.5;
+        }
+        section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .tile {
+            border: 1px solid #444;
+            padding: 5px;
+            width: 45px;
+            text-align: center;
+            background: #f9f9f9;
+            font-size: 0.8em;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin: 10px0;
+            display: block;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript 2.4 - Ciphers + DOM</h2>
+
+    <section>
+        <label>Select Cipher Type: </label>
+        <select id="cipherSelector">
+            <option value="substitution">Substitution</option>
+            <option value="caesar">Caesar</option>
+        </select>
+    </section>
+
+    <section id="subControls">
+        <h3>Substitution Settings</h3>
+        <button id="genBtn">Generate New Random Cipher</button>
+        <div style="margin-top:10px;">
+            <label>Load mapping (26 unique letters):</label>
+            <input type="text" id="loadInput" placeholder="QWERTYUIOP...">
+            <button id="loadBtn">Load</button>
+            <div id="loadError" class="error"></div>
+        </div>
+    </section>
+
+    <section id="caesarControls" class="hidden">
+        <h3>Caesar Settings</h3>
+        <label>Shift Amount: </label>
+        <input type="number" id="shiftInput" value="3" min="0" max="25">
+    </section>
+
+    <section>
+        <h3>Current Mapping Display</h3>
+        <div id="mappingGrid" class="grid"></div>
+    </section>
+
+    <section>
+        <h3>Encrypt / Decrypt</h3>
+        <textarea id="inputText" placeholder="Enter text here..."></textarea>
+        <button id="encryptBtn">Encrypt</button>
+        <button id="decryptBtn">Decrypt</button>
+        <h4>Output:</h4>
+        <textarea id="outputText" readonly></textarea>
+    </section>
+
+    <script>
+        let currentCipher = {}; 
+        const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+        window.onload = () => {
+            handleGenerate();
+        };
+
+        function generateCipher() {
+            let shuffled = [...alphabet];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i+1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            let map = {};
+            alphabet.forEach((letter,i) => map[letter] = shuffled[i]);
+            return map;
+        }
+
+        function updateDisplay() {
+            const grid = document.querySelector("#mappingGrid");
+            grid.innerHTML = "";
+            const isCaesar = document.querySelector("#cipherSelector").value === "caesar";
+            const shift = parseInt(document.querySelector("#shiftInput").value) || 0;
+
+            alphabet.forEach(letter => {
+                let target = "";
+                if (isCaesar) {
+                    let code = letter.charCodeAt(0);
+                    target = String.fromCharCode(((code-97+shift) % 26) + 97);
+                } else {
+                    target = currentCipher[letter] || letter;
+                }
+                
+                const tile = document.createElement("div");
+                tile.className = "tile";
+                tile.innerHTML = `<strong>${letter.toUpperCase()}</strong><br>↓<br>${target.toUpperCase()}`;
+                grid.appendChild(tile);
+            });
+        }
+
+        function handleGenerate() {
+            currentCipher = generateCipher();
+            updateDisplay();
+        }
+
+        document.querySelector("#cipherSelector").onchange = (e) => {
+            const isCaesar = e.target.value === "caesar";
+            document.querySelector("#caesarControls").classList.toggle("hidden", !isCaesar);
+            document.querySelector("#subControls").classList.toggle("hidden", isCaesar);
+            updateDisplay();
+        };
+
+        document.querySelector("#genBtn").onclick = handleGenerate;
+
+        document.querySelector("#shiftInput").oninput = updateDisplay;
+
+        document.querySelector("#loadBtn").onclick = () => {
+            const input = document.querySelector("#loadInput").value.toLowerCase();
+            const errorDiv = document.querySelector("#loadError");
+            errorDiv.innerText = "";
+
+            if (input.length !== 26) {
+                errorDiv.innerText = "Error: Must be exactly 26 letters.";
+                return;
+            }
+            const unique = new Set(input.split(""));
+            if (unique.size !== 26 || ![...unique].every(char => char.match(/[a-z]/))) {
+                errorDiv.innerText = "Error: Must contain 26 unique letters (A-Z).";
+                return;
+            }
+            alphabet.forEach((letter,i) => {
+                currentCipher[letter] = input[i];
+            });
+            updateDisplay();
+        };
+
+        function processText(mode) {
+            const text = document.querySelector("#inputText").value;
+            const type = document.querySelector("#cipherSelector").value;
+            let result = "";
+
+            if (type === "caesar") {
+                let shift = parseInt(document.querySelector("#shiftInput").value) || 0;
+                if (mode === "decrypt") shift = -shift;
+                
+                const normalizedShift = ((shift%26)+26) % 26;
+                for (let char of text) {
+                    if (char.match(/[a-z]/i)) {
+                        const code = char.charCodeAt(0);
+                        const base = (code >= 65 && code <= 90) ? 65 : 97;
+                        result += String.fromCharCode(((code - base + normalizedShift) % 26) + base);
+                    } else {
+                        result += char;
+                    }
+                }
+            } else {
+                let map = currentCipher;
+                if (mode === "decrypt") {
+                    map = Object.fromEntries(Object.entries(currentCipher).map(([k,v]) => [v,k]));
+                }
+                for (let char of text) {
+                    const lower = char.toLowerCase();
+                    if (map[lower]) {
+                        const mapped = map[lower];
+                        result += (char === char.toUpperCase()) ? mapped.toUpperCase() : mapped;
+                    } else {
+                        result += char;
+                    }
+                }
+            }
+            document.querySelector("#outputText").value = result;
+        }
+
+        document.querySelector("#encryptBtn").onclick = () => processText("encrypt");
+        document.querySelector("#decryptBtn").onclick = () => processText("decrypt");
+
+    </script>
+</body>
+</html>

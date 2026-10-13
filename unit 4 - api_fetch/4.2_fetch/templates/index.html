@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Schedule Viewer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        line-height: 1.4;
+      }
+
+      input {
+        font-size: 1rem;
+        padding: 8px;
+      }
+
+      #scheduleContainer {
+        margin-top: 20px;
+        max-width: 500px;
+      }
+
+      .schedule-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .schedule-block {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Super Cool Schedule Viewer</h1>
+    <input type="date" id="datePicker" />
+    <div id="scheduleContainer">
+      <p>Select a date to view the schedule!</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

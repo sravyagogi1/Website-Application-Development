@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap');
+@import url(https://db.onlinewebfonts.com/c/1be24cb794e05db5c90a6b24da7ed1c2?family=Black+Mango);
+
+/* css variables */
+:root {
+    --bg-color: #efe7de;
+    --nav-bg: #f7f7f7;
+    --text-color: #333;
+    --accent-color: #d35400;
+    --card-bg: #ffffff;
+    --font-heading: "Black Mango", cursive; 
+    --font-body: "Quicksand", sans-serif;
+    --font-serif: "Playfair Display", serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-serif);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* header and nav */
+header {
+    width: 100%;
+    background: var(--nav-bg);
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.site-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 18px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+header nav a:hover {
+    opacity: 0.7;
+    color: var(--accent-color);
+}
+
+/* homepage specific */
+main {
+    flex: 1;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+main h1 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* recipe grid layout */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.recipe-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-card h3 {
+    padding: 15px;
+    margin: 0;
+    font-size: 20px;
+    font-family: var(--font-heading);
+}
+
+/* recipe pages styling */
+.recipe-name {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    text-align: center;
+    margin: 40px auto 10px;
+}
+
+.recipe-name h1 {
+    font-size: 45px;
+}
+
+.container {
+    flex: 1; 
+    max-width: 1000px;
+    margin: 20px auto 60px auto;
+    padding: 0 20px;
+}
+
+/* layout for ingredients and image */
+.header-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    justify-content: center;
+}
+
+.left-side {
+    flex: 2;
+}
+
+.description {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.details {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 0;
+    margin-bottom: 25px;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.left-side h2 {
+    font-size: 26px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.left-side ul, .left-side ol {
+    margin-left: 20px;
+    font-family: var(--font-body);
+}
+
+.left-side ul { line-height: 2; }
+.left-side ol { line-height: 1.8; }
+.left-side li { margin-bottom: 8px; }
+
+.image-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.08);
+    border-radius: 8px; 
+}
+
+.video-text {
+    margin-top: 10px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* back button floating at bottom */
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    font-family: var(--font-body);
+    font-size: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s, background 0.2s;
+    z-index: 100;
+}
+
+.back-button:hover {
+    transform: scale(1.05);
+    background: #f0f0f0;
+}
+
+/* footer */
+footer {
+    background: var(--nav-bg);
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: auto; 
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer p {
+    font-family: var(--font-body);
+}
+
+.footer-nav ul, .social-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* media queries for mobile layout */
+@media (max-width: 768px) {
+    .header-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .left-side {
+        order: 2; 
+    }
+    
+    .image-section {
+        order: 1; 
+        margin-bottom: 20px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

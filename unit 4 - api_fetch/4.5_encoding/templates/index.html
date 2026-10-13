@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Wordle Board Encoder</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .board {
+        display: grid;
+        gap: 8px;
+        margin: 15px 0;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(5, 54px);
+        gap: 8px;
+      }
+
+      .tile {
+        height: 50px;
+        width: 50px;
+        border: 2px solid #bbb;
+        background: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .tile.grey {
+        background: #787c7e;
+        border-color: #787c7e;
+        color: white;
+      }
+
+      .tile.yellow {
+        background: #c9b458;
+        border-color: #c9b458;
+        color: white;
+      }
+
+      .tile.green {
+        background: #6aaa64;
+        border-color: #6aaa64;
+        color: white;
+      }
+
+      button {
+        padding: 6px;
+      }
+
+      code {
+        background: #eee;
+      }
+
+      pre {
+        background: #eeeeee;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Wordle Board Encoder</h1>
+
+      <section>
+        <p>
+          My encoding system is <code>letter + color number</code>. The color numbers are
+          <code>0</code> grey, <code>1</code> yellow, and <code>2</code> green.
+        </p>
+        <p>Click a tile to rotate its color. Type letters into the board to build the URL.</p>
+      </section>
+
+      <div id="board" class="board"></div>
+
+      <button id="encodeButton">Parse board</button>
+      <button id="clearButton">Clear</button>
+
+      <section>
+        <p>Encoded URL: <a id="encodedLink" href="/getwords">/getwords</a></p>
+        <pre id="result">Fill in at least one full row, then parse the board.</pre>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

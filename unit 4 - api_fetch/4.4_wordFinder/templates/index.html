@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Grey Letter Word Finder</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      input {
+        padding: 6px;
+      }
+
+      button {
+        padding: 6px;
+      }
+
+      pre {
+        background: #eeeeee;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Grey Letter Word Finder</h1>
+      <p>
+        Type letters that are not allowed in the word. It will returns a list of 5 letter words that don't have those letters.
+      </p>
+
+      <section>
+        <label for="greyLetters">Grey letters</label>
+        <input id="greyLetters" value="fghijklmnopqrstuvwxyz" autocomplete="off">
+        <button id="findButton">Find words</button>
+      </section>
+
+      <section>
+        <p>Route: <a id="routeLink" href="/fghijklmnopqrstuvwxyz">/fghijklmnopqrstuvwxyz</a></p>
+        <pre id="resultOutput">Click Find words to call the route.</pre>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

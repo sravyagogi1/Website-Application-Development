@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Wordle Helper</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .board {
+        display: grid;
+        gap: 6px;
+        margin: 15px 0;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(5, 48px);
+        gap: 6px;
+      }
+
+      .tile {
+        align-items: center;
+        border: 2px solid #999;
+        display: flex;
+        font-size: 24px;
+        font-weight: bold;
+        height: 48px;
+        justify-content: center;
+        width: 48px;
+      }
+
+      .selected {
+        outline: 3px solid black;
+      }
+
+      .grey {
+        background: #787c7e;
+        color: white;
+      }
+
+      .yellow {
+        background: #c9b458;
+        color: white;
+      }
+
+      .green {
+        background: #6aaa64;
+        color: white;
+      }
+
+      button {
+        margin: 4px;
+        padding: 6px;
+      }
+
+      pre {
+        background: #eeeeee;
+        padding: 10px;
+      }
+
+      #validWords {
+        max-width: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wordle Helper</h1>
+    <p>
+      Click a tile, type letters with the keyboard, and use the buttons to mark
+      grey, yellow, or green.
+    </p>
+
+    <div id="board" class="board"></div>
+
+    <button data-color="0">Grey</button>
+    <button data-color="1">Yellow</button>
+    <button data-color="2">Green</button>
+    <button id="findButton">Find valid words</button>
+    <button id="clearButton">Clear</button>
+
+    <h2>Valid Words</h2>
+    <p>API route: <a id="routeLink" href="/getwords">/getwords</a></p>
+    <p id="wordCount">No search yet.</p>
+    <pre id="validWords"></pre>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

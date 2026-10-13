@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      .container { display: flex; gap: 15px; flex-wrap: wrap; }
+      .block { border: 1px solid black; padding: 10px; width: 180px; }
+    </style>
+  </head>
+  <body>
+    <h1>Schedule Viewer</h1>
+    {% for day in schedule.results %}
+      <h2>{{ day.date }} - {{ day.day_type.name }}</h2>
+      <div class="container">
+        {% for block in day.day_type.blocks %}
+          <div class="block">
+            <h3>{{ block.name }}</h3>
+            <p>{{ block.start }} - {{ block.end }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </body>
+</html>

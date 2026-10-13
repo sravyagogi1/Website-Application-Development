@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Interaction Madness</title>
+    <style>
+        @import url(https://db.onlinewebfonts.com/c/1be24cb794e05db5c90a6b24da7ed1c2?family=Black+Mango);
+        body {
+            font-family: "Black Mango", cursive;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        section {
+            border-bottom: 2px solid #ccc;
+            padding: 20px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 125px);
+            gap: 10px;
+        }
+        .clickbox { 
+            width: 125px; 
+            height: 125px; 
+            background-color: #dedede; 
+            border: 1px solid #999; 
+            cursor: pointer;
+        }
+        #chatLog {
+            list-style: none;
+            padding: 0;
+            border: 1px solid #ddd;
+            height: 100px;
+            overflow-y: auto;
+        }
+        #targetText { font-size: 16px; transition: all 0.2s; }
+    </style>
+</head>
+<body>
+
+    <section>
+        <h3>1. Temperature Converter</h3>
+        <input id="tempInput" type="number" placeholder="Fahrenheit">
+        <button id="convertBtn">Convert</button>
+        <p>Result: <span id="converted"></span></p>
+    </section>
+
+    <section>
+        <h3>2. Simple Stopwatch</h3>
+        <h1 id="timerDisplay">0</h1>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+    </section>
+
+    <section>
+        <h3>3. To-Do List</h3>
+        <input id="todoInput" type="text" placeholder="New Task">
+        <button id="addTodoBtn">Add to List</button>
+        <ul id="todoList"></ul>
+    </section>
+
+    <section>
+        <h3>4 & 5. Color Clicker Grid</h3>
+        <div class="grid">
+            <div class="clickbox"></div><div class="clickbox"></div><div class="clickbox"></div>
+            <div class="clickbox"></div><div class="clickbox"></div><div class="clickbox"></div>
+            <div class="clickbox"></div><div class="clickbox"></div><div class="clickbox"></div>
+        </div>
+    </section>
+
+    <section>
+        <h3>6. Naive Chatbot</h3>
+        <input id="chatInput" type="text" placeholder="Say something...">
+        <button id="chatBtn">Send</button>
+        <ul id="chatLog"></ul>
+    </section>
+
+    <section>
+        <h3>8. Word Counter</h3>
+        <textarea id="wordArea" rows="3" cols="40" placeholder="Type here..."></textarea>
+        <p>Word Count: <span id="countDisplay">0</span></p>
+    </section>
+
+    <section>
+        <h3>9. Font Changer</h3>
+        <p id="targetText">Change my style!</p>
+        <button id="biggerBtn">+</button>
+        <button id="smallerBtn">-</button>
+        <input type="color" id="colorPicker">
+    </section>
+
+    <p><em>(Task 7: Press r,g, or b on your keyboard to change background)</em></p>
+
+    <script>
+        // 1
+        document.querySelector("#convertBtn").onclick = () => {
+            let f = document.querySelector("#tempInput").value;
+            let c = (f-32) * 5 / 9;
+            document.querySelector("#converted").innerText = c.toFixed(2) + " Celsius";
+        };
+
+        // 2
+        let timerInterval = null;
+        let seconds = 0;
+        document.querySelector("#startBtn").onclick = () => {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    document.querySelector("#timerDisplay").innerText = seconds;
+                }, 1000);
+            }
+        };
+        document.querySelector("#stopBtn").onclick = () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        };
+        document.querySelector("#resetBtn").onclick = () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            seconds = 0;
+            document.querySelector("#timerDisplay").innerText = seconds;
+        };
+
+        // 3
+        document.querySelector("#addTodoBtn").onclick = () => {
+            let input = document.querySelector("#todoInput");
+            if (input.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.innerText = input.value;
+                document.querySelector("#todoList").appendChild(li);
+                input.value = "";
+            }
+        };
+
+        // 4/5
+        let boxes = Array.from(document.querySelectorAll(".clickbox"));
+        boxes.forEach(box => {
+            box.onclick = () => {
+                let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+                box.style.backgroundColor = randomColor;
+            };
+        });
+
+        // 6
+        document.querySelector("#chatBtn").onclick = () => {
+            let chatInput = document.querySelector("#chatInput");
+            let chatLog = document.querySelector("#chatLog");
+            if (chatInput.value !== "") {
+                let userLi = document.createElement("li");
+                userLi.innerText = "User: " + chatInput.value;
+                chatLog.appendChild(userLi);
+                
+                let botLi = document.createElement("li");
+                botLi.innerText = "Bot: That is very interesting!";
+                chatLog.appendChild(botLi);
+                chatInput.value = "";
+            }
+        };
+
+        // 7
+        document.body.onkeydown = (ev) => {
+            if (ev.key === "r") document.body.style.backgroundColor = "#ffcccc";
+            if (ev.key === "g") document.body.style.backgroundColor = "#ccffcc";
+            if (ev.key === "b") document.body.style.backgroundColor = "#ccccff";
+        };
+
+        // 8
+        document.querySelector("#wordArea").oninput = (ev) => {
+            let text = ev.target.value.trim();
+            let count = text ? text.split(/\s+/).length : 0;
+            document.querySelector("#countDisplay").innerText = count;
+        };
+
+        // 9
+        let fontSize = 16;
+        let target = document.querySelector("#targetText");
+        document.querySelector("#biggerBtn").onclick = () => {
+            fontSize += 2;
+            target.style.fontSize = fontSize + "px";
+        };
+        document.querySelector("#smallerBtn").onclick = () => {
+            fontSize -= 2;
+            target.style.fontSize = fontSize + "px";
+        };
+        document.querySelector("#colorPicker").oninput = (ev) => {
+            target.style.color = ev.target.value;
+        };
+    </script>
+</body>
+</html>

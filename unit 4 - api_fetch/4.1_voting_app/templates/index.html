@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Voting App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .vote-container {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        border-radius: 8px;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #333;
+      }
+      .count-display {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Does Pineapple belong on Pizza??</h1>
+    <div class="vote-container">
+      <button id="upvote-btn">Yes</button>
+      <span class="count-display" id="upvote-count">{{ upvotes }}</span>
+    </div>
+
+    <div class="vote-container">
+      <button id="downvote-btn">No</button>
+      <span class="count-display" id="downvote-count">{{ downvotes }}</span>
+    </div>
+
+    <script>
+      function submitVote(route) {
+        fetch(route, { method: "POST" })
+          .then((response) => response.json()) // Parse the JSON returned by Flask
+          .then((data) => {
+            document.getElementById("upvote-count").innerText = data.upvotes;
+            document.getElementById("downvote-count").innerText =
+              data.downvotes;
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      document
+        .getElementById("upvote-btn")
+        .addEventListener("click", function () {
+          submitVote("/upvote");
+        });
+
+      document
+        .getElementById("downvote-btn")
+        .addEventListener("click", function () {
+          submitVote("/downvote");
+        });
+    </script>
+  </body>
+</html>

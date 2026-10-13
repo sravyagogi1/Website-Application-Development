@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Server Log</h1>
+    <table border="1">
+      <tr>
+        <th>IP Address</th>
+        <th>User Agent</th>
+        <th>Visit Time</th>
+        <th>Seconds Since Last Visit</th>
+      </tr>
+      {% for entry in log_data %}
+      <tr>
+        <td>{{ entry.ip }}</td>
+        <td>{{ entry.agent }}</td>
+        <td>{{ entry.time }}</td>
+        <td>{{ entry.seconds }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('home') }}">Home</a>
+  </body>
+</html>
